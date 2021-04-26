@@ -1,0 +1,50 @@
+/* .body-content {
+  min-height: 100%;
+  margin-bottom: -60px; 
+}
+.body-content:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  height: 60px; 
+}
+.site-footer {
+  background: gray;
+} 
+
+
+
+
+.site-footer{
+    border-top: 1px solid #333;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    position: fixed;
+    width: 100%;
+  }
+
+.body-content {
+  min-height: 100%;
+  margin-bottom: -60px; 
+}
+.body-content:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  height: 60px; 
+}
+.site-footer {
+  background: gray;
+} 
+
+
+
+
+div{
+  position: fixed;
+  bottom: 0;
+}
+ */
