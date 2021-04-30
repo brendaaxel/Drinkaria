@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Receita } from '../models/receita';
+import { ListaDeReceita, Receita } from '../models/receita';
 import { ReceitasService } from '../service/receitas.service';
 
 @Component({
@@ -13,10 +13,10 @@ export class ReceitasComponent implements OnInit {
   constructor(
     private receitasPorNome: ReceitasService) { }
 
-  public receitas: Receita;
+  public receitas: ListaDeReceita[] = [];
+  // public receitas;
 
   ngOnInit(): void {
-    // this.pegarReceitas();
     // console.log(this.receitas);
 
   }
@@ -24,8 +24,7 @@ export class ReceitasComponent implements OnInit {
   pegarReceitas() {
     this.receitasPorNome.pegarReceitasPorNome(this.pesquisa)
       .subscribe(resposta => {
-        console.log(this.receitas);
-        this.receitas = resposta;
+        this.receitas = resposta.drinks;
         console.log(this.receitas);
       });
   }

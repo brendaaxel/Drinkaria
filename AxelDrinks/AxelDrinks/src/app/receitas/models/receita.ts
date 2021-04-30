@@ -1,46 +1,50 @@
-  // export class Receita {
-  //   public nome: string;
-  //   public id: string;
-  //   public categoria: string;
-  //   public ingredientes: Array<{nome: string, quantidade: string}> = [];
-  //   public imagem: string;
-  //   public instrucao: string;
-  //   public taca: string;
-  //   public alcoolico: boolean;
-  
-  //   constructor(drink) {
-  //     this.nome = drink.strDrink;
-  //     this.id = drink.idDrink;
-  //     this.categoria = drink.strCategory;
-  //     this.imagem = drink.strDrinkThumb;
-  //     this.instrucao = drink.strInstructions;
-  //     this.taca = drink.strGlass;
-  //     this.alcoolico = (drink.strAlcoholic === 'Alcoolico');
-  //     for (let i = 1; i < 16; i++) {
-  //       if (drink['strIngredient' + i] !== '') {
-  //         this.ingredientes.push({
-  //           nome: drink['strIngredient' + i],
-  //           quantidade: drink['strMeasure' + i]
-  //         });
-  //       }
-  //     }
-  //   }
-  // }
+// export class Receita {
+//   public nome: string;
+//   public id: string;
+//   public categoria: string;
+//   public ingredientes: Array<{nome: string, quantidade: string}> = [];
+//   public imagem: string;
+//   public instrucao: string;
+//   public taca: string;
+//   public alcoolico: boolean;
+
+//   constructor(drink) {
+//     this.nome = drink.strDrink;
+//     this.id = drink.idDrink;
+//     this.categoria = drink.strCategory;
+//     this.imagem = drink.strDrinkThumb;
+//     this.instrucao = drink.strInstructions;
+//     this.taca = drink.strGlass;
+//     this.alcoolico = (drink.strAlcoholic === 'Alcoolico');
+//     for (let i = 1; i < 16; i++) {
+//       if (drink['strIngredient' + i] !== '') {
+//         this.ingredientes.push({
+//           nome: drink['strIngredient' + i],
+//           quantidade: drink['strMeasure' + i]
+//         });
+//       }
+//     }
+//   }
+// }
 
 
 
 
-  export class Receita {
-    idDrink: number;
-    strDrink?: string;
-    strDrinkAlternate?: string;
-    strTags?: string;
-    strVideo?: string;
-    strCategory?: string;
-    strIBA?: string;
-    strAlcoholic?: string;
-    strGlass?: string;
-    strInstructions?: string;
+export class Receita {
+  drinks: ListaDeReceita[];
+}
+
+export class ListaDeReceita {
+  idDrink: number;
+  strDrink?: string;
+  strDrinkAlternate?: string;
+  strTags?: string;
+  strVideo?: string;
+  strCategory?: string;
+  strIBA?: string;
+  strAlcoholic?: string;
+  strGlass?: string;
+  strInstructions?: string;
   strInstructionsES?: string;
   strInstructionsDE?: string;
   strInstructionsFR?: string;

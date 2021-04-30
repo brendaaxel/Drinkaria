@@ -35,7 +35,7 @@
 
 
 
-  <div class="row w-100 justify-content-center ">
+  <div class="row w-100 justify-content-center">
     <div class="col-6">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -44,100 +44,18 @@
         <input [(ngModel)]="pesquisa" (keyup)='chamarReceitas($event)' type="text" class="form-control"
           placeholder="Ex: Moscow Mule" aria-label="Username" aria-describedby="basic-addon1">
       </div>
-
-
     </div>
   </div>
-
-  
-
   <div class="wrapper">
-    <div class="block">
+    <div class="block" *ngFor="let drink of receitas">
       <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-
-        <!--//! correto <a [routerLink]="['/receita-detalhe', receitas.idDrink]"> -->
+        <!-- <a href="receita-detalhe"><img src="{{drink.strDrinkThumb}}" alt=""></a> -->
+        <a [routerLink]="[drink.idDrink,'receita-detalhe']"><img src="{{drink.strDrinkThumb}}" alt=""></a>
+        <!-- <a [routerLink]="['/receita-detalhe', drink.idDrink]"></a> -->
       </div>
       <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
+        <p>{{(drink.strDrink)}} </p>
       </div>
     </div>
-
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="block-img">
-        <a href="receita-detalhe"><img src="assets/logobebida.png" alt=""></a>
-      </div>
-      <div class="block-desc">
-        <!-- <p>{{receitas.strDrink}} </p> -->
-        <p>Nome da Bebida</p>
-      </div>
-    </div>
-    
-
-
   </div>
+</div>
