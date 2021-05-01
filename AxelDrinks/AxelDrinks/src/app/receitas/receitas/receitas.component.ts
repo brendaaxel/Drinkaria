@@ -21,11 +21,11 @@ export class ReceitasComponent implements OnInit {
 
   }
 
-  pegarReceitas() {
+  chamarReceitasPorNome() {
     this.receitasPorNome.pegarReceitasPorNome(this.pesquisa)
       .subscribe(resposta => {
         this.receitas = resposta.drinks;
-        console.log(this.receitas);
+        // console.log(this.receitas);
       });
   }
   //       error => console.log(error)
@@ -34,7 +34,7 @@ export class ReceitasComponent implements OnInit {
 
   chamarReceitas(event: KeyboardEvent) {
     if (event.keyCode == 13) {
-      this.pegarReceitas();
+      this.chamarReceitasPorNome();
       // console.log(this.receitas);
 
     }

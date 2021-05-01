@@ -12,36 +12,39 @@
     </div>
   </header> -->
 
-
-<div class="main-container text-center">
-    <div class="my-5" *ngFor="let drink of receita">
-        <h1 class="font-weight-bold font-italic">{{drink.strDrink}}</h1>
-    </div>
-    <div class="row ">
-        <div class="col-6">
-            <div class="">
-                <img src="assets/logobebida.png" height="164px" width="253px" alt="Axel Drink´sImagem">
+<div *ngFor="let drink of receita">
+    <div class="main-container text-center">
+        <div class="my-5">
+            <h1 class="font-weight-bold font-italic">{{drink.strDrink}}</h1>
+        </div>
+        <div class="row ">
+            <div class="col-6">
+                <div class="">
+                    <img src={{drink.strDrinkThumb}} alt="Axel Drink´sImagem">
+                </div>
+            </div>
+            <div class="col-4 text-center">
+                <div class="">
+                    <h2 class="font-weight-bold ">Ingredientes</h2>
+                </div>
+                <div class="">
+                    <ul>
+                        <li>{{drink.strIngredient1}}</li>
+                        <li>{{drink.strIngredient2}}</li>
+                        <li>{{drink.strIngredient3}}</li>
+                        <li>{{drink?.strIngredient4}}</li>
+                        <li>{{drink?.strIngredient5}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="col-4 text-center">
-            <div class="">
-                <h2 class="font-weight-bold ">Ingredientes</h2>
-            </div>
-            <div class="">
-                <ul>
-                    <li>primeiro</li>
-                    <li>segundo</li>
-                    <li>terceiro</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="row w-100 justify-content-center ">
-        <div class="col-8">
-            <h2 class="font-weight-bold py-3 mb-3">Instruções</h2>
-            <p class="text-justify">"In a mason jar muddle the watermelon and 5 mint leaves together into a puree and strain. Next add the grapefruit juice, juice of half a lime and the tequila as well as some ice. Put a lid on the jar and shake. Pour into a glass and add more ice. Garnish with fresh mint and a small slice of watermelon."!</p>
+        <div class="row w-100 justify-content-center ">
+            <div class="col-8">
+                <h2 class="font-weight-bold py-3 mb-3">Instruções</h2>
+                <p class="text-justify">{{drink.strInstructions}}</p>
 
+            </div>
         </div>
     </div>
 </div>

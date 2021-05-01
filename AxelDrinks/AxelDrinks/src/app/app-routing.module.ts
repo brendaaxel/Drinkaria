@@ -14,19 +14,19 @@ export const routes: Routes = [
     component: ReceitasComponent,
   },
   {
-    path: 'receitas/:id/receita-detalhe',
+    path: 'receitas/detalhes-receita/:id',
     component: ReceitaDetalheComponent
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

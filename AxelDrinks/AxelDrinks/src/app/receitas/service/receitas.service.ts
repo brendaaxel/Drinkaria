@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
-import { Receita } from '../models/receita';
+import { ListaDeReceita, Receita } from '../models/receita';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/Rx';
@@ -43,7 +43,7 @@ export class ReceitasService {
     return this.http.get<Receita>(`${endereco}random.php`)
   };
 
-  pegarReceitasPorId(id: number): Observable<Receita> {
+  pegarReceitasPorId(id): Observable<Receita> {
     const endereco = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
 
     return this.http.get<Receita>(`${endereco}${id}`)

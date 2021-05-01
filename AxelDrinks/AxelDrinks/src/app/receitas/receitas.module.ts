@@ -13,9 +13,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
+
 @NgModule({
   declarations: [ReceitasComponent,
-
   ],
   imports: [
     CommonModule,

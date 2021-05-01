@@ -13,11 +13,10 @@ import { FooterComponent } from './navegacao/footer/footer.component';
 import { ReceitasService } from './receitas/service/receitas.service';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routing.module';
-import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.component';
-
 
 
 @NgModule({
@@ -26,7 +25,8 @@ import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.compo
     HeaderComponent,
     ReceitasComponent,
     FooterComponent,
-    // ReceitaDetalheComponent,
+    ReceitaDetalheComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -37,6 +37,7 @@ import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.compo
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
+    CommonModule,
     FormsModule,
     RouterModule
 

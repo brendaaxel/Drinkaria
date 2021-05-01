@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListaDeReceita } from '../receitas/models/receita';
 import { ReceitasService } from '../receitas/service/receitas.service';
+import { ActivatedRoute } from "@angular/router"
 
 @Component({
   selector: 'app-receita-detalhe',
@@ -9,23 +10,25 @@ import { ReceitasService } from '../receitas/service/receitas.service';
 })
 export class ReceitaDetalheComponent implements OnInit {
 
-  drink: number = 0;
-  receita: ListaDeReceita[] = [];
+  idDrink: string;
+  public receita: ListaDeReceita[] = [];
   erro: boolean = false;
 
-
   constructor(
-    private receitaService: ReceitasService
+    private receitaService: ReceitasService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.pegarReceitaPorId()
+
+    this.idDrink = this.route.snapshot.paramMap.get('id');
+    this.chamarReceitaPorId(this.idDrink)
   }
 
-  pegarReceitaPorId() {
-    this.receitaService.pegarReceitasPorId(this.drink)
+  chamarReceitaPorId(id) {
+    this.receitaService.pegarReceitasPorId(id)
       .subscribe((resposta) => {
-        this.receita = resposta.drinks
+        this.receita = resposta.drinks;
       }, () => {
         //! menesagem de erro
         this.erro = true;
