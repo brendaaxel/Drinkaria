@@ -22,7 +22,7 @@
   <div *ngIf="pesquisa" class="wrapper">
     <div class="block" *ngFor="let drink of receitas">
       <div class="block-img">
-        <a [routerLink]="[' detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
+        <a [routerLink]="['detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
       </div>
       <a [routerLink]="['detalhes-receita',drink.idDrink]">
         <div class="block-desc">

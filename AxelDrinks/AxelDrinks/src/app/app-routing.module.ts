@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './navegacao/home/home.component';
 import { ReceitaDetalhesComponent } from './receitas/receita-detalhes/receita-detalhes.component';
 import { ReceitasComponent } from './receitas/receitas/receitas.component';
+import { FavoritosComponent } from './receitas/favoritos/favoritos.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'receitas/detalhes-receita/:id',
     component: ReceitaDetalhesComponent
+  },
+  {
+    path: 'favoritos',
+    component: FavoritosComponent,
   },
   {
     path: '**',

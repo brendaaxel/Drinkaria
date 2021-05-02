@@ -6,11 +6,13 @@ import { ReceitasComponent } from './receitas/receitas.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 
 
 @NgModule({
   declarations: [ReceitasComponent,
+    FavoritosComponent,
   ],
   imports: [
     CommonModule,
