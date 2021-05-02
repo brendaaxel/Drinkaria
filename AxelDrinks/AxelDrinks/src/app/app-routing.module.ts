@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home/home.component';
-import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.component';
+import { HomeComponent } from './navegacao/home/home.component';
+import { ReceitaDetalhesComponent } from './receitas/receita-detalhes/receita-detalhes.component';
 import { ReceitasComponent } from './receitas/receitas/receitas.component';
 
 export const routes: Routes = [
@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: 'receitas/detalhes-receita/:id',
-    component: ReceitaDetalheComponent
+    component: ReceitaDetalhesComponent
   },
   {
     path: '**',

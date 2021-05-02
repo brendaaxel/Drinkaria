@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ListaDeReceita } from '../receitas/models/receita';
-import { ReceitasService } from '../receitas/service/receitas.service';
-import { ActivatedRoute } from "@angular/router"
+import { ReceitasService } from '../service/receitas.service';
+import { ActivatedRoute } from "@angular/router";
+import { ListaDeReceita } from '../models/receita';
+
 
 @Component({
-  selector: 'app-receita-detalhe',
-  templateUrl: './receita-detalhe.component.html',
-  styleUrls: ['./receita-detalhe.component.css']
+  selector: 'app-receita-detalhes',
+  templateUrl: './receita-detalhes.component.html',
+  styleUrls: ['./receita-detalhes.component.css']
 })
-export class ReceitaDetalheComponent implements OnInit {
+export class ReceitaDetalhesComponent implements OnInit {
 
-  idDrink: string;
+  public idDrink: string;
   public receita: ListaDeReceita[] = [];
   erro: boolean = false;
 
@@ -20,9 +21,8 @@ export class ReceitaDetalheComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.idDrink = this.route.snapshot.paramMap.get('id');
-    this.chamarReceitaPorId(this.idDrink)
+    this.chamarReceitaPorId(this.idDrink);
   }
 
   chamarReceitaPorId(id) {

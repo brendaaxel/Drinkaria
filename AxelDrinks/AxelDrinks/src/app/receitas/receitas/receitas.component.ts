@@ -8,16 +8,21 @@ import { ReceitasService } from '../service/receitas.service';
   styleUrls: ['./receitas.component.css']
 })
 export class ReceitasComponent implements OnInit {
-  pesquisa: string = "";
+   pesquisa: string = "";
+  // public receitaRandon: ListaDeReceita[] = [];
+  // pesquisaRandomica: string = "";
+  // erro: boolean = false;
 
   constructor(
-    private receitasPorNome: ReceitasService) { }
+    private receitasPorNome: ReceitasService,
+    // private receitaRandomicaService: ReceitasService
+    ) { }
 
   public receitas: ListaDeReceita[] = [];
   // public receitas;
 
   ngOnInit(): void {
-    // console.log(this.receitas);
+    // this.pegarReceitaRandomica()
 
   }
 
@@ -39,5 +44,18 @@ export class ReceitasComponent implements OnInit {
 
     }
   }
+
+  // pegarReceitaRandomica() {
+    //   this.receita = [];
+  
+    //   this.receitaRanomicaService.pegarReceitasRandomicas()
+    //     .subscribe(
+    //       (resposta) => {
+    //         this.receitaRandon = resposta.drinks;
+    //       }, () => {
+    //         //! menesagem de erro
+    //         this.erro = true;
+    //       })
+    // }
 
 }

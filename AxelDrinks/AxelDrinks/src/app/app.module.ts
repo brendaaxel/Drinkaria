@@ -16,7 +16,7 @@ import { routes } from './app-routing.module';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.component';
+import { ReceitaDetalhesComponent } from './receitas/receita-detalhes/receita-detalhes.component';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.compo
     HeaderComponent,
     ReceitasComponent,
     FooterComponent,
-    ReceitaDetalheComponent
+    ReceitaDetalhesComponent
   
   ],
   imports: [
@@ -40,7 +40,6 @@ import { ReceitaDetalheComponent } from './receita-detalhe/receita-detalhe.compo
     CommonModule,
     FormsModule,
     RouterModule
-
 
   ],
   providers: [

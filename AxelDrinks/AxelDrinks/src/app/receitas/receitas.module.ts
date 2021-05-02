@@ -12,8 +12,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
-
-
 @NgModule({
   declarations: [ReceitasComponent,
   ],

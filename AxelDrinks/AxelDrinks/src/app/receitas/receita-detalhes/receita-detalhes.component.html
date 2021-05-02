@@ -1,18 +1,4 @@
-<!-- <header class="bg-light card py-3 mb-5">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-lg-2">
-          <img src="https://angular.io/assets/images/logos/angular/angular.svg" />
-        </div>
-        <div class="col-lg-10">
-          <h1 class="display-4 text-dark mt-5 mb-2">Desenvolvimento SPA com Angular</h1>
-          <p class="lead mb-5 text-dark">Você está pronto para aprender muito sobre este fantástico framework SPA?</p>
-        </div>
-      </div>
-    </div>
-  </header> -->
-
-<div *ngFor="let drink of receita">
+  <div *ngFor="let drink of receita">
     <div class="main-container text-center">
         <div class="my-5">
             <h1 class="font-weight-bold font-italic">{{drink.strDrink}}</h1>
@@ -20,7 +6,7 @@
         <div class="row ">
             <div class="col-6">
                 <div class="">
-                    <img src={{drink.strDrinkThumb}} alt="Axel Drink´sImagem">
+                    <img src={{drink.strDrinkThumb}} alt="Axel Drink´sImagem" width="400" height="400">
                 </div>
             </div>
             <div class="col-4 text-center">
@@ -43,6 +29,9 @@
             <div class="col-8">
                 <h2 class="font-weight-bold py-3 mb-3">Instruções</h2>
                 <p class="text-justify">{{drink.strInstructions}}</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus suscipit iure, tempore esse sapiente eligendi eos tempora amet laudantium. Quis, odio velit sint dolor eveniet id laudantium quia magni suscipit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas libero cum molestias deleniti. Rerum delectus eius ducimus perspiciatis illo! Quaerat sequi quos odit quasi repellendus unde architecto magnam ex? Accusamus.
+                </p>
 
             </div>
         </div>

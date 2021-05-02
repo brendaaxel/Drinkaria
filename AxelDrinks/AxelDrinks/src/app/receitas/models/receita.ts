@@ -1,35 +1,3 @@
-// export class Receita {
-//   public nome: string;
-//   public id: string;
-//   public categoria: string;
-//   public ingredientes: Array<{nome: string, quantidade: string}> = [];
-//   public imagem: string;
-//   public instrucao: string;
-//   public taca: string;
-//   public alcoolico: boolean;
-
-//   constructor(drink) {
-//     this.nome = drink.strDrink;
-//     this.id = drink.idDrink;
-//     this.categoria = drink.strCategory;
-//     this.imagem = drink.strDrinkThumb;
-//     this.instrucao = drink.strInstructions;
-//     this.taca = drink.strGlass;
-//     this.alcoolico = (drink.strAlcoholic === 'Alcoolico');
-//     for (let i = 1; i < 16; i++) {
-//       if (drink['strIngredient' + i] !== '') {
-//         this.ingredientes.push({
-//           nome: drink['strIngredient' + i],
-//           quantidade: drink['strMeasure' + i]
-//         });
-//       }
-//     }
-//   }
-// }
-
-
-
-
 export class Receita {
   drinks: ListaDeReceita[];
 }
