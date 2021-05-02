@@ -2,22 +2,27 @@
   <h1 class="text-center my-5">Descubra novas receitas e tenha novas experiências!</h1>
 
   <div class="row w-100 justify-content-center">
-    <div class="col-6">
+    <div class="col-4">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Pesquise Aqui</span>
         </div>
         <input [(ngModel)]="pesquisa" (keyup)='chamarReceitas($event)' type="text" class="form-control"
           placeholder="Ex: Moscow Mule" aria-label="Username" aria-describedby="basic-addon1">
+        <button *ngIf="pesquisa?.length" mat-button matSuffix mat-icon-button (click)='chamarReceitasPorNome()'>
+          <mat-icon> search </mat-icon>
+        </button>
+        <button *ngIf="pesquisa?.length" mat-button matSuffix mat-icon-button (click)='pesquisa=""'>
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
     </div>
   </div>
 
-
-  <div class="wrapper">
+  <div *ngIf="pesquisa" class="wrapper">
     <div class="block" *ngFor="let drink of receitas">
       <div class="block-img">
-        <a [routerLink]="['detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
+        <a [routerLink]="[' detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
       </div>
       <a [routerLink]="['detalhes-receita',drink.idDrink]">
         <div class="block-desc">
@@ -25,5 +30,18 @@
         </div>
       </a>
     </div>
+  </div>
+
+
+
+  <div *ngIf="naoHaReceita" class="row pt-5 mt-2 justify-content-md-center  ">
+    <div class="col-6 alert alert-danger text-center" role="alert">
+      <mat-icon>error</mat-icon>
+      <span>
+        Não achamos receitas com essas iniciais
+      </span>
+
+    </div>
+
   </div>
 </div>

@@ -1,11 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './navegacao/header/header.component';
 import { ReceitasComponent } from './receitas/receitas/receitas.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +16,13 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReceitaDetalhesComponent } from './receitas/receita-detalhes/receita-detalhes.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 
 @NgModule({
@@ -29,17 +35,23 @@ import { ReceitaDetalhesComponent } from './receitas/receita-detalhes/receita-de
   
   ],
   imports: [
-    BrowserModule,
+
     AppRoutingModule,
     RouterModule.forRoot(routes, { useHash: false}),
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatCardModule,
-    MatButtonModule,
     HttpClientModule,
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    MatSliderModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+
 
   ],
   providers: [

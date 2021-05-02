@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ReceitasRoutingModule } from './receitas-routing.module';
 import { ReceitasComponent } from './receitas/receitas.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -18,13 +15,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   imports: [
     CommonModule,
     ReceitasRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule,
     FormsModule,
     RouterModule,
-    MatButtonToggleModule,
-    MatCheckboxModule
+    MatIconModule
+    
+   
+    
   ]
 })
 export class ReceitasModule { }

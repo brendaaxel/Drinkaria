@@ -8,22 +8,15 @@
     width: 100%;
   }
 
-
   .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;
   }
-
-  /* .container{
-    width: 1500px;
-  } */
 
   @media (min-width: 1200px){
     .container {
         max-width: 1900px;
     }
-
   }
-
   
 .wrapper {
   display: flex;
@@ -138,4 +131,8 @@
 ul {
   list-style-type: none;
   margin-top: 4px;
+}
+
+span{
+  font-size: 20px;
 }
