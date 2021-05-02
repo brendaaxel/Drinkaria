@@ -27,7 +27,10 @@ export class ReceitasComponent implements OnInit {
   }
 
   chamarReceitasPorNome() {
-    this.receitasPorNome.pegarReceitasPorNome(this.pesquisa)
+    this.receitasPorNome.pegarReceitasPorNome(this.pesquisa.trim())
+      // .pipe(
+      //   debounceTime(3000)
+      // )
       .subscribe(resposta => {
         this.receitas = resposta.drinks;
         // console.log(this.receitas);
@@ -59,3 +62,7 @@ export class ReceitasComponent implements OnInit {
     // }
 
 }
+function debounceTime(arg0: number): import("rxjs").OperatorFunction<Receita, unknown> {
+  throw new Error('Function not implemented.');
+}
+

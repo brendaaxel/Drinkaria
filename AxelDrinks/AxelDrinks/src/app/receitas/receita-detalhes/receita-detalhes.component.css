@@ -1,7 +1,26 @@
 li{
     list-style: none;
+    margin-bottom: 20px;
 }
 
 ul{
     padding-left: 0;
 }
+
+p{
+    margin: 0;
+}
+
+div{
+    font-size:21px;
+}
+h2{
+    font-size:30px;
+    color:rgb(36, 38, 56);
+}
+
+h1{
+     font-size:40px;
+     color:black;
+     
+ }
