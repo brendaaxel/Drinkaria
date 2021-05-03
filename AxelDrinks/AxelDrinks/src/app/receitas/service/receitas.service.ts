@@ -13,7 +13,6 @@ export class ReceitasService {
     const endereco = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
     return this.http.get<Receita>(`${endereco}${consulta}`)
-
   }
 
   pegarReceitasRandomicas(): Observable<Receita> {
@@ -26,7 +25,6 @@ export class ReceitasService {
     const endereco = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
 
     return this.http.get<Receita>(`${endereco}${id}`)
-
   }
 
 }

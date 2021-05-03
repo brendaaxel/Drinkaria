@@ -13,7 +13,8 @@ export class ReceitaDetalhesComponent implements OnInit {
 
   public idDrink: string;
   public receita: ListaDeReceita[] = [];
-  erro: boolean = false;
+  // erro: boolean = false;
+  erro;
 
   constructor(
     private receitaService: ReceitasService,
@@ -29,6 +30,7 @@ export class ReceitaDetalhesComponent implements OnInit {
     this.receitaService.pegarReceitasPorId(id)
       .subscribe((resposta) => {
         this.receita = resposta.drinks;
+        this.erro = false;
       }, () => {
         //! menesagem de erro
         this.erro = true;
