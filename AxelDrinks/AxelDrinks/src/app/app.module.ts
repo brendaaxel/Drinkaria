@@ -22,7 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FavoritosComponent } from './receitas/favoritos/favoritos.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HeaderComponent,
     ReceitasComponent,
     FooterComponent,
-    ReceitaDetalhesComponent
+    ReceitaDetalhesComponent,
+    FavoritosComponent
   
   ],
   imports: [
@@ -51,6 +53,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatFormFieldModule,
     MatButtonToggleModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
 
 
   ],

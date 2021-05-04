@@ -9,6 +9,7 @@ import { debounceTime } from 'rxjs/operators'
   styleUrls: ['./receitas.component.css']
 })
 export class ReceitasComponent implements OnInit {
+  //! loader: boolean = false;
   pesquisa: string = "";
   // public receitaRandon: ListaDeReceita[] = [];
   // pesquisaRandomica: string = "";
@@ -28,12 +29,15 @@ export class ReceitasComponent implements OnInit {
 
   chamarReceitasPorNome() {
     this.receitas = [];
+    //! this.loader = true;
+
     this.receitasPorNome.pegarReceitasPorNome(this.removeAcentos(this.pesquisa).trim())
       .pipe(debounceTime(3000))
       .subscribe(resposta => {
         if (resposta.drinks && resposta.drinks.length > 0) {
           this.receitas = resposta.drinks;
           this.naoHaReceita = false;
+          //! this.loader=false
         }
         if (resposta.drinks == null) {
           this.receitas = resposta.drinks;
@@ -46,25 +50,25 @@ export class ReceitasComponent implements OnInit {
       });
   }
 
-  chamarReceitas(event: KeyboardEvent) {
-    if (event.keyCode ==13) {
+  chamarReceitas(event: KeyboardEvent):void {
+    if (event.keyCode == 13) {
       this.chamarReceitasPorNome();
     }
   };
 
 
-  removeAcentos (string)  {       
+  removeAcentos(string){
     if (!string || typeof (string) !== 'string') {
       return '';
     }
-    
-    string = string.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
-    string = string.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
-    string = string.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
-    string = string.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
-    string = string.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
-    string = string.replace(new RegExp('[Ç]','gi'), 'c');
-      return string.toLowerCase();                 
+
+    string = string.replace(new RegExp('[ÁÀÂÃ]', 'gi'), 'a');
+    string = string.replace(new RegExp('[ÉÈÊ]', 'gi'), 'e');
+    string = string.replace(new RegExp('[ÍÌÎ]', 'gi'), 'i');
+    string = string.replace(new RegExp('[ÓÒÔÕ]', 'gi'), 'o');
+    string = string.replace(new RegExp('[ÚÙÛ]', 'gi'), 'u');
+    string = string.replace(new RegExp('[Ç]', 'gi'), 'c');
+    return string.toLowerCase();
   }
 
 

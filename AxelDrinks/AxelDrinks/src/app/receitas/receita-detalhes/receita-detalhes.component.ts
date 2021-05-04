@@ -37,4 +37,12 @@ export class ReceitaDetalhesComponent implements OnInit {
       })
   }
 
+  adicionarFavorito(){
+
+    localStorage.setItem('mockBancoDados',JSON.stringify(this.receita));
+    console.log(this.receita);
+    // localStorage.clear()
+
+  }
+
 }

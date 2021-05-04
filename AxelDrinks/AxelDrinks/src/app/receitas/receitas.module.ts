@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -19,7 +20,8 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
     ReceitasRoutingModule,
     FormsModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
     
    
     

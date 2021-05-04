@@ -1,1 +1,14 @@
-<h1 class="text-center">favoritos works!</h1>
+<!-- <mat-progress-spinner></mat-progress-spinner> -->
+        <div *ngIf="receitas" class="wrapper">
+            <div class="block" *ngFor="let drink of receitas">
+              <div class="block-img">
+                <a [routerLink]="['detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
+              </div>
+              <a [routerLink]="['detalhes-receita',drink.idDrink]">
+                <div class="block-desc">
+                  <p>{{drink.strDrink}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
