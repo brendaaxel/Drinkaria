@@ -42,23 +42,23 @@ describe('ReceitaDetalhesComponent', () => {
     }
   ]
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     mockRespostaService = jasmine.createSpyObj(['pegarReceitasPorId']);
 
     TestBed.configureTestingModule({
       declarations: [ReceitaDetalhesComponent],
       imports: [RouterTestingModule],
       providers: [
-        { provide: ReceitasService, useValue: mockListaReceita }
+        { provide: ReceitasService, useValue: mockRespostaService }
       ],
     })
       .compileComponents();
-    
-      fixture = TestBed.createComponent(ReceitaDetalhesComponent);
-      
-      mockRespostaService.pegarReceitasPorId.and.returnValue(of({
-        drinks: mockListaReceita
-      }));
+
+    fixture = TestBed.createComponent(ReceitaDetalhesComponent);
+
+    mockRespostaService.pegarReceitasPorId.and.returnValue(of({
+      drinks: mockListaReceita
+    }));
   });
 
   it('should create', () => {
@@ -66,10 +66,10 @@ describe('ReceitaDetalhesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('deve chamar pegar Receita por Id e colocar erro como false', async () => {
-    await component.ngOnInit();
+xit('deve chamar o serviço', () => { //! erro
+    const mockId = 1245;
+    component.chamarReceitaPorId(mockId);
 
-    expect(component.erro).toEqual(false);
-    
+    expect(mockRespostaService.pegarReceitasPorId(mockId)).toHaveBeenCalled();
   });
 });

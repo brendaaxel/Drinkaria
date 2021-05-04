@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ReceitasService } from '../service/receitas.service';
 
 import { ReceitasComponent } from './receitas.component';
@@ -50,7 +50,7 @@ describe('ReceitasComponent', () => {
       declarations: [ReceitasComponent],
       imports: [RouterTestingModule],
       providers: [
-        { provide: ReceitasService, useValue: mockListaReceita }
+        { provide: ReceitasService, useValue: mockRespostaService }
       ],
     })
       .compileComponents();
@@ -61,21 +61,48 @@ describe('ReceitasComponent', () => {
     mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
       drinks: mockListaReceita
     }));
-    
+
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('deve colocar naoHaReceita como false', () => {
+  it('deve chamar o serviço', () => {
+    component.chamarReceitasPorNome();
+
+    expect(mockRespostaService.pegarReceitasPorNome).toHaveBeenCalled();
+  });
+
+  it('deve resposta', () => {
     mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
-      // drinks: []
+      drinks:[]
     }));
     component.chamarReceitasPorNome();
 
-    expect(component.naoHaReceita).toEqual(false);
-    
+    expect(component.receitas.length).toEqual(0);
+    expect(component.naoHaReceita).toEqual(undefined);
+  });
+
+  it('deve xxxx  ', () => {
+    mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
+      
+    }));
+    component.chamarReceitasPorNome();
+
+    expect(mockRespostaService.pegarReceitasPorNome).toHaveBeenCalled();
+    expect(component.naoHaReceita).toEqual(true);
+
+
+  });
+
+  it('deve yyyy ', () => {
+    mockRespostaService.pegarReceitasPorNome.and.returnValue(throwError({}));
+    component.chamarReceitasPorNome();
+
+    expect(mockRespostaService.pegarReceitasPorNome).toHaveBeenCalled();
+    expect(component.erro).toEqual(true);
+
   });
 
 
@@ -84,7 +111,7 @@ describe('ReceitasComponent', () => {
     let resposta = component.removeAcentos(teste);
 
     expect(resposta).toEqual('orgao');
-    
+
   });
 
   it('deve não remover acentos quando números', () => {
@@ -92,6 +119,34 @@ describe('ReceitasComponent', () => {
     let resposta = component.removeAcentos(teste);
 
     expect(resposta).toEqual('');
-    
   });
+
+  it('deve chamar Receitas por nome quando teclar ENTER', () => { //! o erro que passa no teste
+
+    spyOn(component, 'chamarReceitasPorNome');
+
+    const teclaEvento = new KeyboardEvent('keyup', { code: "Enter" });
+
+    component.chamarReceitas(teclaEvento);
+
+    expect(component.chamarReceitasPorNome()).toEqual(undefined); //! erro de lógica
+  });
+
+
+
+  // it('should trigger a TAB keypress event on an element', () => {
+  //   const tabKeypress = new KeyboardEvent('keypress', {
+  //     // @ts-ignore
+  //     keyCode: 9, // Tab Key
+  //     cancelable: true
+  //   });
+
+  //   // var event = document.createEvent('Event');
+  // event.keyCode = key; // Deprecated, prefer .key instead.
+  // event.key = key;
+  // event.initEvent('keydown');
+  // document.dispatchEvent(event);
+
+
+
 });

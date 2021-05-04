@@ -34,18 +34,12 @@ export class ReceitasComponent implements OnInit {
         if (resposta.drinks && resposta.drinks.length > 0) {
           this.receitas = resposta.drinks;
           this.naoHaReceita = false;
-          // console.log(this.naoHaReceita);
-
-
         }
         if (resposta.drinks == null) {
           this.receitas = resposta.drinks;
           this.naoHaReceita = true;
           console.log(this.naoHaReceita);
-
         }
-
-        // console.log(this.receitas);
       }, () => {
         //         //! menesagem de erro
         this.erro = true;
