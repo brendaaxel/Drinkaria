@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
+import { ListaDeReceita, Receita } from '../models/receita';
 import { ReceitasService } from '../service/receitas.service';
 
 import { ReceitaDetalhesComponent } from './receita-detalhes.component';
@@ -8,11 +9,11 @@ import { ReceitaDetalhesComponent } from './receita-detalhes.component';
 describe('ReceitaDetalhesComponent', () => {
   let component: ReceitaDetalhesComponent;
   let fixture: ComponentFixture<ReceitaDetalhesComponent>;
-  let mockRespostaService;
+  let mockService;
 
-  const mockListaReceita = [
+  let mockListaReceita: ListaDeReceita[] = [
     {
-      idDrink: "11007",
+      idDrink: 11007,
       strDrink: "Margarita",
       strDrinkAlternate: null,
       strTags: "IBA,ContemporaryClassic",
@@ -38,38 +39,55 @@ describe('ReceitaDetalhesComponent', () => {
       strImageSource: "https:\/\/commons.wikimedia.org\/wiki\/File:Klassiche_Margarita.jpg",
       strImageAttribution: "Cocktailmarler",
       strCreativeCommonsConfirmed: "Yes",
-      dateModified: "2015-08-18 14:42:59"
+      dateModified: new Date (`2015-08-18 14:42:59`)
     }
   ]
 
   beforeEach(async () => {
-    mockRespostaService = jasmine.createSpyObj(['pegarReceitasPorId']);
+    mockService = jasmine.createSpyObj(['pegarReceitasPorId']);
 
     TestBed.configureTestingModule({
       declarations: [ReceitaDetalhesComponent],
       imports: [RouterTestingModule],
       providers: [
-        { provide: ReceitasService, useValue: mockRespostaService }
+        { provide: ReceitasService, useValue: mockService }
       ],
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ReceitaDetalhesComponent);
 
-    mockRespostaService.pegarReceitasPorId.and.returnValue(of({
+    mockService.pegarReceitasPorId.and.returnValue(of({
       drinks: mockListaReceita
     }));
   });
 
-  it('should create', () => {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ReceitaDetalhesComponent);
     component = fixture.componentInstance;
+  });
+
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-xit('deve chamar o serviço', () => { //! erro
-    const mockId = 1245;
-    component.chamarReceitaPorId(mockId);
+  it('deve chamar o serviço', () => {
+    component.ngOnInit();
 
-    expect(mockRespostaService.pegarReceitasPorId(mockId)).toHaveBeenCalled();
+    expect(component.receita).toEqual(mockListaReceita);
+  });
+
+  it('deve colocar erro como true quando resposta vier vazia', () => {
+    mockService.pegarReceitasPorId.and.returnValue(throwError({
+    }));
+
+    component.ngOnInit();
+
+    expect(component.erro).toEqual(true);
+  });
+
+  it('deve adicionar favorito', () => {
+
+
+    
   });
 });

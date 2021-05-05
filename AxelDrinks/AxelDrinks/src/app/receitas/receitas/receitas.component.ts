@@ -9,81 +9,81 @@ import { debounceTime } from 'rxjs/operators'
   styleUrls: ['./receitas.component.css']
 })
 export class ReceitasComponent implements OnInit {
-  //! loader: boolean = false;
-  pesquisa: string = "";
+  public loader: boolean = false;
+  public pesquisa: string = "";
   // public receitaRandon: ListaDeReceita[] = [];
   // pesquisaRandomica: string = "";
-  naoHaReceita;
-  erro: boolean = false;
+  public naoHaReceita: boolean;
+  public erro: boolean = false;
 
   constructor(
-    private receitasPorNome: ReceitasService,
-    // private receitaRandomicaService: ReceitasService
+    private receitasServico: ReceitasService,
   ) { }
 
   public receitas: ListaDeReceita[] = [];
-  // public receitas;
 
   ngOnInit(): void {
   }
 
   chamarReceitasPorNome() {
     this.receitas = [];
-    //! this.loader = true;
+    this.loader = true;
+    this.naoHaReceita = false;
 
-    this.receitasPorNome.pegarReceitasPorNome(this.removeAcentos(this.pesquisa).trim())
+    this.receitasServico.pegarReceitasPorNome(this.removeAcentos(this.pesquisa).trim())
       .pipe(debounceTime(3000))
       .subscribe(resposta => {
         if (resposta.drinks && resposta.drinks.length > 0) {
           this.receitas = resposta.drinks;
           this.naoHaReceita = false;
-          //! this.loader=false
-        }
-        if (resposta.drinks == null) {
+          this.loader = false
+        } else if (resposta.drinks === null) {
           this.receitas = resposta.drinks;
           this.naoHaReceita = true;
-          console.log(this.naoHaReceita);
         }
       }, () => {
-        //         //! menesagem de erro
         this.erro = true;
+        this.loader = false
+
       });
   }
 
-  chamarReceitas(event: KeyboardEvent):void {
+  chamarReceitas(event: KeyboardEvent): void {
     if (event.keyCode == 13) {
       this.chamarReceitasPorNome();
     }
   };
 
-
-  removeAcentos(string){
-    if (!string || typeof (string) !== 'string') {
+  removeAcentos(palavra) {
+    if (!palavra || typeof (palavra) !== 'string') {
       return '';
     }
 
-    string = string.replace(new RegExp('[ÁÀÂÃ]', 'gi'), 'a');
-    string = string.replace(new RegExp('[ÉÈÊ]', 'gi'), 'e');
-    string = string.replace(new RegExp('[ÍÌÎ]', 'gi'), 'i');
-    string = string.replace(new RegExp('[ÓÒÔÕ]', 'gi'), 'o');
-    string = string.replace(new RegExp('[ÚÙÛ]', 'gi'), 'u');
-    string = string.replace(new RegExp('[Ç]', 'gi'), 'c');
-    return string.toLowerCase();
+    palavra = palavra.replace(new RegExp('[ÁÀÂÃ]', 'gi'), 'a');
+    palavra = palavra.replace(new RegExp('[ÉÈÊ]', 'gi'), 'e');
+    palavra = palavra.replace(new RegExp('[ÍÌÎ]', 'gi'), 'i');
+    palavra = palavra.replace(new RegExp('[ÓÒÔÕ]', 'gi'), 'o');
+    palavra = palavra.replace(new RegExp('[ÚÙÛ]', 'gi'), 'u');
+    palavra = palavra.replace(new RegExp('[Ç]', 'gi'), 'c');
+    return palavra.toLowerCase();
+  };
+
+  limparPesquisa() {
+    this.pesquisa = '';
+    this.receitas = [];
   }
 
+  // chamarReceitaRandomica() {
+  //   this.receitaRandon = [];
 
-  // pegarReceitaRandomica() {
-  //   this.receita = [];
-
-  //   this.receitaRanomicaService.pegarReceitasRandomicas()
+  //   this.receitasServico.pegarReceitasRandomicas()
   //     .subscribe(
   //       (resposta) => {
   //         this.receitaRandon = resposta.drinks;
   //       }, () => {
-  //         //! menesagem de erro
   //         this.erro = true;
-  //       })
-  // }
+  //       });
+  // };
 
 }
 

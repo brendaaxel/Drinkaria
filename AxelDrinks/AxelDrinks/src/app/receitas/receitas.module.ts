@@ -22,9 +22,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RouterModule,
     MatIconModule,
     MatProgressSpinnerModule
-    
-   
-    
   ]
 })
 export class ReceitasModule { }

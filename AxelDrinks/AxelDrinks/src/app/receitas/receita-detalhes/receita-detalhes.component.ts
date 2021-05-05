@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReceitasService } from '../service/receitas.service';
 import { ActivatedRoute } from "@angular/router";
 import { ListaDeReceita } from '../models/receita';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -10,11 +11,10 @@ import { ListaDeReceita } from '../models/receita';
   styleUrls: ['./receita-detalhes.component.css']
 })
 export class ReceitaDetalhesComponent implements OnInit {
-
+  public loader: boolean = false;
   public idDrink: string;
   public receita: ListaDeReceita[] = [];
-  // erro: boolean = false;
-  erro;
+  erro: boolean = false;
 
   constructor(
     private receitaService: ReceitasService,
@@ -27,22 +27,25 @@ export class ReceitaDetalhesComponent implements OnInit {
   }
 
   chamarReceitaPorId(id) {
+    this.receita = [];
+    this.loader = true
+
     this.receitaService.pegarReceitasPorId(id)
+      .pipe(debounceTime(3000))
       .subscribe((resposta) => {
-        this.receita = resposta.drinks;
-        this.erro = false;
+        if (resposta.drinks && resposta.drinks.length > 0) {
+          this.receita = resposta.drinks;
+          this.erro = false;
+          this.loader = false;
+        }
       }, () => {
-        //! menesagem de erro
         this.erro = true;
+        this.loader = false;
       })
   }
 
-  adicionarFavorito(){
-
-    localStorage.setItem('mockBancoDados',JSON.stringify(this.receita));
-    console.log(this.receita);
-    // localStorage.clear()
-
+  adicionarFavorito() {
+    localStorage.setItem('mockBancoDados', JSON.stringify(this.receita));
   }
 
 }

@@ -1,6 +1,5 @@
 <div class="container">
   <h1 class="text-center my-5">Descubra novas receitas e tenha novas experiências!</h1>
-
   <div class="row w-100 justify-content-center">
     <div class="col-4">
       <div class="input-group mb-3">
@@ -12,13 +11,14 @@
         <button *ngIf="pesquisa?.length" mat-button matSuffix mat-icon-button (click)='chamarReceitasPorNome()'>
           <mat-icon> search </mat-icon>
         </button>
-        <button *ngIf="pesquisa?.length" mat-button matSuffix mat-icon-button (click)='pesquisa=""'>
+        <button *ngIf="pesquisa.length" mat-button matSuffix mat-icon-button
+         (click)='limparPesquisa()'>
           <mat-icon>close</mat-icon>
         </button>
       </div>
     </div>
   </div>
-
+<mat-spinner class="container" *ngIf="loader && !naoHaReceita"></mat-spinner>
   <div *ngIf="pesquisa" class="wrapper">
     <div class="block" *ngFor="let drink of receitas">
       <div class="block-img">
@@ -31,17 +31,20 @@
       </a>
     </div>
   </div>
-
-
-
   <div *ngIf="naoHaReceita" class="row pt-5 mt-2 justify-content-md-center  ">
-    <div class="col-6 alert alert-danger text-center" role="alert">
+    <div class="col-6 alert alert-warning text-center" role="alert">
       <mat-icon>error</mat-icon>
       <span>
         Não achamos receitas com essas iniciais
       </span>
-
     </div>
-
+  </div>
+  <div *ngIf="erro" class="row pt-5 mt-2 justify-content-md-center  ">
+    <div class="col-6 alert alert-danger text-center" role="alert">
+      <mat-icon>error</mat-icon>
+      <span>
+        ERRO do servidor ao processar a pesquisa
+      </span>
+    </div>
   </div>
 </div>

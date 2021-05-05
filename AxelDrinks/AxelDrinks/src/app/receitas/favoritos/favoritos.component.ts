@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ListaDeReceita } from '../models/receita';
 
 @Component({
   selector: 'app-favoritos',
@@ -6,27 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favoritos.component.css']
 })
 export class FavoritosComponent implements OnInit {
-  teste: [] = [];
-  resultado;
-  receitas: [];
-
+  public receitas:ListaDeReceita [];
+  
   constructor() { }
-
+  
   ngOnInit(): void {
     this.exibirFavoritos();
-
-
-    console.log(this.receitas);
   };
-
+  
   exibirFavoritos(): void {
     if (localStorage.getItem('mockBancoDados')) {
       this.receitas = JSON.parse(localStorage.getItem('mockBancoDados'));
     } else {
       this.receitas = [];
     }
-  }
+  };
 
-
-
+  limparLocalStorage():void {
+    localStorage.clear()
+    this.receitas = [];
+  };
 }

@@ -1,14 +1,25 @@
-<!-- <mat-progress-spinner></mat-progress-spinner> -->
-        <div *ngIf="receitas" class="wrapper">
-            <div class="block" *ngFor="let drink of receitas">
-              <div class="block-img">
-                <a [routerLink]="['detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
-              </div>
-              <a [routerLink]="['detalhes-receita',drink.idDrink]">
-                <div class="block-desc">
-                  <p>{{drink.strDrink}}</p>
-                </div>
-              </a>
-            </div>
-          </div>
+<div *ngIf="receitas" class="wrapper">
+  <div class="block" *ngFor="let drink of receitas">
+    <div class="block-img">
+      <a [routerLink]="['/receitas/detalhes-receita',drink.idDrink]"><img src="{{drink.strDrinkThumb}}" alt=""></a>
+    </div>
+    <a [routerLink]="['detalhes-receita',drink.idDrink]">
+      <div class="block-desc">
+        <p>{{drink.strDrink}}</p>
+      </div>
+    </a>
+  </div>
+  <div class="example-button-row">
+    <button [disabled]='receitas.length==0' mat-flat-button color="warn" (click)='limparLocalStorage()'>Apagar
+      Favoritos</button>
+  </div>
+</div>
 
+<div *ngIf="receitas.length==0" class="row pt-5 mt-2 justify-content-md-center  ">
+  <div class="col-6 alert alert-danger text-center" role="alert">
+    <mat-icon>error</mat-icon>
+    <span>
+      Não há receitas em sua lista de favoritos
+    </span>
+  </div>
+</div>

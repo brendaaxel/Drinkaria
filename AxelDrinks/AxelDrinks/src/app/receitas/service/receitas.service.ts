@@ -6,9 +6,9 @@ import { Receita } from '../models/receita';
 
 @Injectable()
 export class ReceitasService {
-
+  
   constructor(private http: HttpClient) { }
-
+  
   pegarReceitasPorNome(consulta: string): Observable<Receita> {
     const endereco = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 

@@ -72,31 +72,20 @@ describe('ReceitasComponent', () => {
     component.chamarReceitasPorNome();
 
     expect(mockRespostaService.pegarReceitasPorNome).toHaveBeenCalled();
+    expect(component.naoHaReceita).toEqual(false);
   });
 
-  it('deve resposta', () => {
+  xit('deve colocar naoHaReceitas como true quando resposta vier vazia', () => {
     mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
-      drinks:[]
+      drinks: []
     }));
     component.chamarReceitasPorNome();
 
     expect(component.receitas.length).toEqual(0);
-    expect(component.naoHaReceita).toEqual(undefined);
-  });
-
-  it('deve xxxx  ', () => {
-    mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
-      
-    }));
-    component.chamarReceitasPorNome();
-
-    expect(mockRespostaService.pegarReceitasPorNome).toHaveBeenCalled();
     expect(component.naoHaReceita).toEqual(true);
-
-
   });
 
-  it('deve yyyy ', () => {
+    it('deve colocar erro como true quando não vier resposta ', () => {
     mockRespostaService.pegarReceitasPorNome.and.returnValue(throwError({}));
     component.chamarReceitasPorNome();
 
@@ -104,7 +93,6 @@ describe('ReceitasComponent', () => {
     expect(component.erro).toEqual(true);
 
   });
-
 
   it('deve remover acentos quando string', () => {
     let teste = 'órgão';
@@ -121,32 +109,22 @@ describe('ReceitasComponent', () => {
     expect(resposta).toEqual('');
   });
 
-  it('deve chamar Receitas por nome quando teclar ENTER', () => { //! o erro que passa no teste
+  it('deve chamar Receitas por nome quando teclar ENTER na pesquisa', () => {
+    let resultado = spyOn(component, 'chamarReceitasPorNome');
 
-    spyOn(component, 'chamarReceitasPorNome');
-
-    const teclaEvento = new KeyboardEvent('keyup', { code: "Enter" });
-
+    const teclaEvento = { keyCode: 13 } as KeyboardEvent;
     component.chamarReceitas(teclaEvento);
 
-    expect(component.chamarReceitasPorNome()).toEqual(undefined); //! erro de lógica
+    expect(resultado).toHaveBeenCalled();
   });
 
+  it('deve Não chamar Receitas por nome quando tecla for diferente de ENTER na pesquisa', () => {
+    let resultado = spyOn(component, 'chamarReceitasPorNome');
 
+    const teclaEvento = { keyCode: 9 } as KeyboardEvent; //! TAB
+    component.chamarReceitas(teclaEvento);
 
-  // it('should trigger a TAB keypress event on an element', () => {
-  //   const tabKeypress = new KeyboardEvent('keypress', {
-  //     // @ts-ignore
-  //     keyCode: 9, // Tab Key
-  //     cancelable: true
-  //   });
+    expect(resultado).not.toHaveBeenCalled();
 
-  //   // var event = document.createEvent('Event');
-  // event.keyCode = key; // Deprecated, prefer .key instead.
-  // event.key = key;
-  // event.initEvent('keydown');
-  // document.dispatchEvent(event);
-
-
-
+  });
 });
