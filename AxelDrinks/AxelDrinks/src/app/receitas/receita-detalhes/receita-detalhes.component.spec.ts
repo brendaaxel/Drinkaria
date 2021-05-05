@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { of, throwError } from 'rxjs';
@@ -10,6 +11,7 @@ describe('ReceitaDetalhesComponent', () => {
   let component: ReceitaDetalhesComponent;
   let fixture: ComponentFixture<ReceitaDetalhesComponent>;
   let mockService;
+  // let localStorage = {};
 
   let mockListaReceita: ListaDeReceita[] = [
     {
@@ -39,9 +41,21 @@ describe('ReceitaDetalhesComponent', () => {
       strImageSource: "https:\/\/commons.wikimedia.org\/wiki\/File:Klassiche_Margarita.jpg",
       strImageAttribution: "Cocktailmarler",
       strCreativeCommonsConfirmed: "Yes",
-      dateModified: new Date (`2015-08-18 14:42:59`)
+      dateModified: new Date(`2015-08-18 14:42:59`)
     }
-  ]
+  ];
+
+  // const mockLocalStorage = {
+  //   getItem: (key: string): string => {
+  //     return key in localStorage ? localStorage[key] : null;
+  //   },
+  //   setItem: (key: string, value: string) => {
+  //     localStorage[key] = `${value}`;
+  //   },
+  //   clear: () => {
+  //     localStorage = {};
+  //   }
+  // };
 
   beforeEach(async () => {
     mockService = jasmine.createSpyObj(['pegarReceitasPorId']);
@@ -52,6 +66,7 @@ describe('ReceitaDetalhesComponent', () => {
       providers: [
         { provide: ReceitasService, useValue: mockService }
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
       .compileComponents();
 
@@ -66,6 +81,10 @@ describe('ReceitaDetalhesComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    localStorage.clear();
+  })
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -76,7 +95,7 @@ describe('ReceitaDetalhesComponent', () => {
     expect(component.receita).toEqual(mockListaReceita);
   });
 
-  it('deve colocar erro como true quando resposta vier vazia', () => {
+  it('deve colocar erro como true quando vier erro do servidor', () => {
     mockService.pegarReceitasPorId.and.returnValue(throwError({
     }));
 
@@ -85,9 +104,21 @@ describe('ReceitaDetalhesComponent', () => {
     expect(component.erro).toEqual(true);
   });
 
+  it('deve colocar naoHaReceita como true quando resposta vazia', () => {
+    mockService.pegarReceitasPorId.and.returnValue(of({
+    }));
+
+    component.ngOnInit();
+
+    expect(component.naoHaReceita).toEqual(true);
+  });
+
   it('deve adicionar favorito', () => {
+    spyOn(window.localStorage, 'setItem');
 
+    component.adicionarFavorito();
 
-    
+    expect(window.localStorage.setItem).toHaveBeenCalledWith('mockBancoDados', '[]');
+
   });
 });

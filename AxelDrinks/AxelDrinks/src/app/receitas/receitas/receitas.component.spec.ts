@@ -1,3 +1,5 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
@@ -52,6 +54,8 @@ describe('ReceitasComponent', () => {
       providers: [
         { provide: ReceitasService, useValue: mockRespostaService }
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+
     })
       .compileComponents();
     fixture = TestBed.createComponent(ReceitasComponent);
@@ -75,13 +79,22 @@ describe('ReceitasComponent', () => {
     expect(component.naoHaReceita).toEqual(false);
   });
 
-  xit('deve colocar naoHaReceitas como true quando resposta vier vazia', () => {
+  it('deve colocar naoHaReceitas como true quando resposta vier vazia', () => {
     mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
-      drinks: []
     }));
     component.chamarReceitasPorNome();
 
     expect(component.receitas.length).toEqual(0);
+    // expect(component.naoHaReceita).toEqual(true);
+  });
+
+  it('deve colocar naoHaReceitas como true quando resposta nula', () => {
+    mockRespostaService.pegarReceitasPorNome.and.returnValue(of({
+      drinks: null
+    }));
+    component.chamarReceitasPorNome();
+
+    expect(component.receitas).toEqual(null);
     expect(component.naoHaReceita).toEqual(true);
   });
 
@@ -127,4 +140,12 @@ describe('ReceitasComponent', () => {
     expect(resultado).not.toHaveBeenCalled();
 
   });
+
+  it('deve limpar pesquisa ao clicar no botão de close', () => {
+    component.limparPesquisa();
+    
+    expect(component.pesquisa).toEqual('');
+    expect(component.receitas.length).toEqual(0);
+  });
+
 });

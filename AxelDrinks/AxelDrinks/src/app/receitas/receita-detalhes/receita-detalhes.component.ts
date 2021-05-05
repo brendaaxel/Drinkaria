@@ -13,6 +13,7 @@ import { debounceTime } from 'rxjs/operators';
 export class ReceitaDetalhesComponent implements OnInit {
   public loader: boolean = false;
   public idDrink: string;
+  public naoHaReceita: boolean = false
   public receita: ListaDeReceita[] = [];
   erro: boolean = false;
 
@@ -37,6 +38,8 @@ export class ReceitaDetalhesComponent implements OnInit {
           this.receita = resposta.drinks;
           this.erro = false;
           this.loader = false;
+        } else {
+          this.naoHaReceita = true;
         }
       }, () => {
         this.erro = true;
